@@ -1,0 +1,154 @@
+/*.infos{
+
+	margin: 0;
+	padding: 0;
+	display: flex;
+	justify-content: center;
+	min-height: 100vh;
+
+}*/
+
+.infos .container{
+
+	position: relative;
+	/*width: 90%;*/
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+	grid-template-rows: auto;
+	grid-gap: 0 40px;
+
+}
+
+.infos .box{
+
+	position: relative;
+	height: 400px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 1px solid #000;
+	background: #000;
+	margin-bottom: 10%;
+
+}
+
+.infos .box .glass{
+
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 50%;
+	height: 100%;
+	display: block;
+	background: rgba(255,255,255,.1);
+	pointer-events: none;
+}
+
+.infos .container .box:before{
+
+	content: '';
+	position: absolute;
+	top: -2px;
+	left: -2px;
+	right: -2px;
+	bottom: -2px;
+	background: #f7a50b;
+	transform: skew(2deg, 2deg);
+	z-index: -1;
+
+}
+
+.infos .container .box:after{
+
+	content: '';
+	position: absolute;
+	top: -2px;
+	left: -2px;
+	right: -2px;
+	bottom: -2px;
+	background: #fb3;
+	z-index: -2;
+	filter: blur(5px);
+
+}
+
+.infos .container .box:nth-child(n):before, .infos .container .box:nth-child(n):after{
+
+background: linear-gradient(235deg,red,blue,green,purple);
+}
+
+.infos .content{
+
+	position: relative;
+	padding: 20px;
+
+	max-block-size: 238px;
+	min-block-size: 238px;
+	height: 103px;
+}
+
+.infos .box .content h2{
+
+	position: absolute;
+	top: -60px;
+	min-right: 65px;
+	margin: 0;
+	padding: 0;
+	font-size: 5em;
+	color: rgba(255, 187, 51, 0.59);
+	transition: 0.5s;
+
+	text-align: left;
+}
+
+.infos .box:hover .content h2{
+
+	top: -140px;
+}
+
+.infos .box .content h3{
+
+	margin: 0 0 10px;
+	padding: 0;
+	font-size: 24px;
+	font-weight: 500;
+	color: #f7a50b;
+
+}
+
+.infos .box .content p{
+
+	margin: 0;
+	padding: 0;
+	font-size: 16px;
+	color: #fff;
+	min-block-size: 130px;
+  max-block-size: 180px;
+	overflow-y: auto;
+}
+
+.infos .box .content button{
+
+	position: relative;
+	margin: 20px 0 0;
+	padding: 10px 10px;
+	text-decoration: none;
+	display: inline-block;
+	color: #fb3;
+	border-radius: 25%;
+	background: #ec1313a1;
+	transition: 0.5s;
+	transform: translateY(-40px);
+	opacity: 0;
+	visibility: hidden;
+	box-shadow: 0px 0px 15px 2px orangered;
+
+}
+
+.infos .box:hover .content button{
+
+	transform: translateY(0);
+	opacity: 1;
+	visibility: visible;
+
+}

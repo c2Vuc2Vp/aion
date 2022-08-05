@@ -1,0 +1,554 @@
+<?php
+
+require_once"../../account.php";
+
+?>
+<div class="animated slow pulse section__content section__content--p30">
+  
+  <div class="container-fluid">
+   
+    <div class="row">
+     
+      <div class="col-md-12">
+     
+        <div class="overview-wrap">
+     
+          <h2 class="heading-title">Bienvenue <?=$username?></h2>
+     
+        </div>
+     
+      </div>
+    
+    </div>
+
+    <div class="container">
+
+      <?php
+
+        if ($userrole == 'a') {
+
+          ?>
+
+            <div class="col-lg-6 offset-md-3">
+
+              <div class="card">
+              
+                  <div class="card-header">
+              
+                      <strong>Ajouter</strong> Info
+              
+                  </div>
+              
+                  <div class="card-body card-block">
+              
+                    <form class="form-horizontal">
+            
+                      <div class="row form-group">
+          
+                          <div class="col col-md-3">
+          
+                              <label class=" form-control-label">Auteur</label>
+          
+                          </div>
+          
+                          <div class="col-12 col-md-9">
+          
+                              <p class="form-control-static"><?=$username?></p>
+          
+                          </div>
+          
+                      </div>
+          
+                      <div class="row form-group">
+          
+                          <div class="col col-md-3">
+          
+                              <label for="text-input" class=" form-control-label">Titre</label>
+          
+                          </div>
+          
+                          <div class="col-12 col-md-9">
+          
+                              <input type="text" id="titre" name="titre" placeholder="Donner un titre à l'informations" class="form-control">
+          
+                              <small class="form-text text-muted">Donner un titre évocateur</small>
+          
+                          </div>
+          
+                      </div>
+
+                      <div class="row form-group">
+                        
+                        <div class="col col-md-3">
+                        
+                          <label for="textarea-input" class=" form-control-label">Information</label>
+                        
+                        </div>
+                      
+                        <div class="col-12 col-md-9">
+                    
+                          <textarea name="info" id="info_text" rows="9" placeholder="Ecrire..." class="form-control"></textarea>
+                    
+                        </div>
+                    
+                      </div>
+
+                      <div class="card-footer">
+
+                          <button id="add_info" class="btn btn-primary btn-sm">
+
+                              <i class="fa fa-dot-circle-o"></i> Ajouter
+
+                          </button>
+
+                          <button type="reset" class="btn btn-danger btn-sm">
+
+                              <i class="fa fa-ban"></i> Annuler
+
+                          </button>
+
+                      </div>
+
+                    </form>
+
+                  </div>
+
+              </div>
+
+            </div>
+
+            <div class="row">
+              
+              <div class="col-md-4">
+             
+                <div class="card">
+                  
+                  <div class="card-header">
+                    <i class="fas fa-info-circle"></i>
+                    <strong class="card-title"> Info. Général
+                    
+                      <small>
+                
+                        <span class="badge badge-danger float-right mt-1">0</span>
+                
+                      </small>
+                    
+                    </strong>
+              
+                  </div>
+              
+                  <div class="card-body">
+                  
+                    <p class="card-text">C'est ici que toutes les informations vous seront transmisent.</p>
+             
+                  </div>
+              
+                </div>
+              
+              </div>
+
+              <?php
+
+                $info = $pdo->query("SELECT * FROM infos ORDER BY id DESC");
+
+                $info->execute([]);
+
+                while ($infos = $info->fetch()) {
+
+                  $id = $infos['id'];
+                  
+                  $titre = $infos['titre'];
+
+                  $texte = $infos['info'];
+                
+                ?>
+
+                   <div class="col-md-4">
+             
+                      <div class="card">
+                        
+                        <div class="card-header">
+                          <i class="fas fa-info-circle"></i>
+                          <strong class="card-title"> Info. <?=$titre?>
+                          
+                            <small>
+                      
+                              <?php if ($userrole == 'a') { ?><span class="badge badge-danger float-right mt-1"><button data-id="<?=$id?>" id="sup<?=$id?>"><i class="fas fa-trash"></i></button></span><?php } ?>
+                      
+                            </small>
+                          
+                          </strong>
+                    
+                        </div>
+                    
+                        <div class="card-body">
+                        
+                          <p class="card-text"><?=$texte?></p>
+                   
+                        </div>
+                    
+                      </div>
+                    
+                    </div>
+
+                    <script type="text/javascript">
+                      
+                      // Suppression
+
+                      $(document).on('click','#sup<?=$id?>', function(){
+
+                        var id = $(this).data('id');
+
+                        var table = "infos";
+
+                        console.log(id);
+
+                        if (id == '') {
+
+                          Swal.fire(
+                            'Erreur!',
+                            'Veillez choisir un id.',
+                            'error'
+                          );
+
+                          return false;
+
+                        };
+
+                        Swal.fire({
+                          title: 'Êtes-vous sûr?',
+                          text: "Supprimé cette info!",
+                          type: 'warning',
+                          showCancelButton: true,
+                          confirmButtonColor: '#3085d6',
+                          cancelButtonColor: '#d33',
+                          confirmButtonText: 'Oui!'
+                        }).then((result) => {
+
+                          if (result.value) {
+
+                            $.ajax({
+
+                              url: 'supp_info.php',
+
+                              method: 'post',
+
+                              data: {
+
+                                id: id,
+
+                              },
+
+                              dataType: 'text',
+
+                              success: function(data){
+
+                                $('.main-content').load('vues/account');
+
+                                if (data == 'Del') {
+
+                                  Swal.fire({
+                                    position: 'top-end',
+                                    title: 'Supprimer',
+                                    text: "Supprimer avec success.",
+                                    type: 'success',
+                                    showConfirmButton: false,
+                                    timer: 3000
+                                  });
+
+                                }
+
+                              }
+
+                            });
+
+                          };
+
+                        });
+
+                      })
+                      
+                    </script>
+
+                <?php
+                
+                }
+
+              ?>
+          
+            </div>
+
+          <?php 
+
+        }else{
+
+          ?>
+
+            <div class="row">
+              
+              <div class="col-md-4">
+             
+                <div class="card">
+                  
+                  <div class="card-header">
+                    <i class="fas fa-info-circle"></i>
+                    <strong class="card-title"> Info. Général
+                    
+                      <small>
+                
+                        <span class="badge badge-danger float-right mt-1">0</span>
+                
+                      </small>
+                    
+                    </strong>
+              
+                  </div>
+              
+                  <div class="card-body">
+                  
+                    <p class="card-text">C'est ici que toutes les informations vous seront transmisent.</p>
+             
+                  </div>
+              
+                </div>
+              
+              </div>
+
+              <?php
+
+                $info = $pdo->query("SELECT * FROM infos ORDER BY id DESC");
+
+                $info->execute([]);
+
+                while ($infos = $info->fetch()) {
+
+                  $id = $infos['id'];
+                  
+                  $titre = $infos['titre'];
+
+                  $texte = $infos['info'];
+                
+                ?>
+
+                   <div class="col-md-4">
+             
+                      <div class="card">
+                        
+                        <div class="card-header">
+                          <i class="fas fa-info-circle"></i>
+                          <strong class="card-title"> Info. <?=$titre?>
+                          
+                            <small>
+                      
+                              <?php if ($userrole == 'a') { ?><span class="badge badge-danger float-right mt-1"><button data-id="<?=$id?>" id="sup<?=$id?>"><i class="fas fa-trash"></i></button></span><?php } ?>
+                      
+                            </small>
+                          
+                          </strong>
+                    
+                        </div>
+                    
+                        <div class="card-body">
+                        
+                          <p class="card-text"><?=$texte?></p>
+                   
+                        </div>
+                    
+                      </div>
+                    
+                    </div>
+
+                    <script type="text/javascript">
+                      
+                      // Suppression
+
+                      $(document).on('click','#sup<?=$id?>', function(){
+
+                        var id = $(this).data('id');
+
+                        var table = "infos";
+
+                        console.log(id);
+
+                        if (id == '') {
+
+                          Swal.fire(
+                            'Erreur!',
+                            'Veillez choisir un id.',
+                            'error'
+                          );
+
+                          return false;
+
+                        };
+
+                        Swal.fire({
+                          title: 'Êtes-vous sûr?',
+                          text: "Supprimé cette info!",
+                          type: 'warning',
+                          showCancelButton: true,
+                          confirmButtonColor: '#3085d6',
+                          cancelButtonColor: '#d33',
+                          confirmButtonText: 'Oui!'
+                        }).then((result) => {
+
+                          if (result.value) {
+
+                            $.ajax({
+
+                              url: 'supp_info.php',
+
+                              method: 'post',
+
+                              data: {
+
+                                id: id,
+
+                              },
+
+                              dataType: 'text',
+
+                              success: function(data){
+
+                                $('.main-content').load('vues/account');
+
+                                if (data == 'Del') {
+
+                                  Swal.fire({
+                                    position: 'top-end',
+                                    title: 'Supprimer',
+                                    text: "Supprimer avec success.",
+                                    type: 'success',
+                                    showConfirmButton: false,
+                                    timer: 3000
+                                  });
+
+                                }
+
+                              }
+
+                            });
+
+                          };
+
+                        });
+
+                      })
+                      
+                    </script>
+
+                <?php
+                
+                }
+
+              ?>
+          
+            </div>
+
+          <?php
+
+        }
+
+      ?>
+
+    </div>
+
+    <script type="text/javascript">
+
+      $(document).ready(function () {
+
+        // ajout de l'audio
+
+        $("#add_info").click(function(e){
+
+          e.preventDefault();
+
+          const titre = $("#titre").val();
+
+          const info = $("#info_text").val();
+
+          const url = 'upload_info.php';
+
+          $.ajax({
+
+            type: 'POST',
+
+            url: url,
+
+            data: {
+
+              info : info,
+
+              titre : titre,
+
+            },
+
+            success: function(reponse){
+
+              if (reponse == 'oui') {
+
+                Swal.fire({
+
+                  position: 'top-end',
+                  title: 'Insertion',
+                  text: "Info inséré avec success.",
+                  type: 'success',
+                  showConfirmButton: false,
+                  timer: 3000
+                
+                }).then((result) =>{
+
+                  $('.main-content').load('vues/account');
+
+                });
+
+              };
+
+              if (reponse == 'vide') {
+
+                Swal.fire({
+
+                  position: 'top-end',
+                  title: 'Insertion',
+                  text: "Vous avez posté des champs vides.",
+                  type: 'error',
+                  showConfirmButton: false,
+                  timer: 3000
+                
+                }).then((result) =>{
+
+                  $('.main-content').load('vues/info');
+
+                });
+
+              };
+
+            }
+
+          });
+
+        });
+
+      })
+
+    </script>
+
+  </div>
+
+  <div class="row bottom-fixed">
+      
+    <div class="col-md-12">
+      
+      <div class="copyright">
+
+        <p>Copyright © <?=date("Y")?> <?=WEBNAME?>. All rights reserved.</p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<script src="js/main.js"></script>
