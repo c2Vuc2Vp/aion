@@ -47,75 +47,76 @@
     <!-- Header End -->
       
     <main id="main">
-      <!--? Hero Area Start-->
+     
+			<!--? Hero Area Start-->
       <div class="container-fluid">
-          <div class="slider-area">
-              <!-- Mobile Device Show Menu-->
-              <div class="header-right2 d-flex align-items-center">
-                  <!-- Search Box -->
-                  <div class="search d-block d-md-none" >
-                      <ul class="d-flex align-items-center">
-                          <li class="mr-15">
-                              <div class="nav-search search-switch">
-                                  <i class="ti-search"></i>
-                              </div>
-                          </li>
-                          <li>
-                              <div class="card-stor">
-                                  <img src="<?=$assets?>img/gallery/card.svg" alt="">
-                                  <span>0</span>
-                              </div>
-                          </li>
-                      </ul>
-                  </div>
-              </div>
-              <!-- /End mobile  Menu-->
+				<div class="slider-area">
+						<!-- Mobile Device Show Menu-->
+						<div class="header-right2 d-flex align-items-center">
+								<!-- Search Box -->
+								<div class="search d-block d-md-none" >
+										<ul class="d-flex align-items-center">
+												<li class="mr-15">
+														<div class="nav-search search-switch">
+																<i class="ti-search"></i>
+														</div>
+												</li>
+												<li>
+														<div class="card-stor">
+																<img src="<?=$assets?>img/gallery/card.svg" alt="">
+																<span>0</span>
+														</div>
+												</li>
+										</ul>
+								</div>
+						</div>
+						<!-- /End mobile  Menu-->
 
-              <div class="slider-active dot-style">
-                  <!-- Single -->
-                  <div class="single-slider slider-bg1 hero-overly slider-height d-flex align-items-center">
-                      <div class="container">
-                          <div class="row justify-content-center">
-                              <div class="col-xl-8 col-lg-9">
-                                  <!-- Hero Caption -->
-                                  <div class="hero__caption">
-                                      <h1>Perpetuel<br>changement<br>de la mode</h1>
-                                      <a href="shop.php" class="btn">Acheter</a>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                  <!-- Single -->
-                  <div class="single-slider slider-bg2 hero-overly slider-height d-flex align-items-center">
-                      <div class="container">
-                          <div class="row justify-content-center">
-                              <div class="col-xl-8 col-lg-9">
-                                  <!-- Hero Caption -->
-                                  <div class="hero__caption">
-                                      <h1>Perpetuel<br>changement<br>de la mode</h1>
-                                      <a href="shop.php" class="btn">Acheter</a>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                  <!-- Single -->
-                  <div class="single-slider slider-bg3 hero-overly slider-height d-flex align-items-center">
-                      <div class="container">
-                          <div class="row justify-content-center">
-                              <div class="col-xl-8 col-lg-9">
-                                  <!-- Hero Caption -->
-                                  <div class="hero__caption">
-                                      <h1>Perpetuel<br>changement<br>de la mode</h1>
-                                      <a href="shop.php" class="btn">Acheter</a>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
+						<div class="slider-active dot-style">
+								<!-- Single -->
+								<div class="single-slider slider-bg1 hero-overly slider-height d-flex align-items-center">
+										<div class="container">
+												<div class="row justify-content-center">
+														<div class="col-xl-8 col-lg-9">
+																<!-- Hero Caption -->
+																<div class="hero__caption">
+																		<h1>Perpetuel<br>changement<br>de la mode</h1>
+																		<a href="shop.php" class="btn">Acheter</a>
+																</div>
+														</div>
+												</div>
+										</div>
+								</div>
+								<!-- Single -->
+								<div class="single-slider slider-bg2 hero-overly slider-height d-flex align-items-center">
+										<div class="container">
+												<div class="row justify-content-center">
+														<div class="col-xl-8 col-lg-9">
+																<!-- Hero Caption -->
+																<div class="hero__caption">
+																		<h1>Perpetuel<br>changement<br>de la mode</h1>
+																		<a href="shop.php" class="btn">Acheter</a>
+																</div>
+														</div>
+												</div>
+										</div>
+								</div>
+								<!-- Single -->
+								<div class="single-slider slider-bg3 hero-overly slider-height d-flex align-items-center">
+										<div class="container">
+												<div class="row justify-content-center">
+														<div class="col-xl-8 col-lg-9">
+																<!-- Hero Caption -->
+																<div class="hero__caption">
+																		<h1>Perpetuel<br>changement<br>de la mode</h1>
+																		<a href="shop.php" class="btn">Acheter</a>
+																</div>
+														</div>
+												</div>
+										</div>
+								</div>
+						</div>
+				</div>
       </div>
       <!-- End Hero -->
       <!--? Popular Items Start -->
