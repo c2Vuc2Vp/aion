@@ -2,7 +2,7 @@
 
 	try{
 
-		$pdo = new PDO('mysql:host=localhost;dbname=id72416538_aion', 'id72416538', 'Mh8DeN2Ue64t');
+		$pdo = new PDO('mysql:host=localhost;dbname=dbname', 'bduser', 'dbpass');
 
 		$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
 
